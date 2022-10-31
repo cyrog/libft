@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 14:20:17 by cgross            #+#    #+#             */
-/*   Updated: 2022/10/31 18:47:04 by cgross           ###   ########.fr       */
+/*   Created: 2022/10/31 12:50:51 by cgross            #+#    #+#             */
+/*   Updated: 2022/10/31 12:54:28 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
- * Alloue (avec malloc(3)) et retourne une chaîne de
-	caractères issue de la chaîne ’s’.
-	Cette nouvelle chaîne commence à l’index ’start’ et
-	a pour taille maximale ’len’.
-	*/
-
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	ft_putendl_fd(char *s, int fd)
 {
 	size_t	i;
-	char	*str;
 
-	str = malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
 	i = 0;
-	while (i < len && start < len)
+	while (s[i])
 	{
-		str[i] = s[start + i];
+		ft_putchar_fd(s[i], fd);
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	ft_putchar_fd('\n', fd);
 }

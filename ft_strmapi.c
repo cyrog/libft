@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 14:20:17 by cgross            #+#    #+#             */
-/*   Updated: 2022/10/31 18:47:04 by cgross           ###   ########.fr       */
+/*   Created: 2022/10/31 15:39:14 by cgross            #+#    #+#             */
+/*   Updated: 2022/10/31 15:45:34 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
- * Alloue (avec malloc(3)) et retourne une chaîne de
-	caractères issue de la chaîne ’s’.
-	Cette nouvelle chaîne commence à l’index ’start’ et
-	a pour taille maximale ’len’.
-	*/
-
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
-	char	*str;
+	unsigned int	i;
+	char			*str;
 
-	str = malloc(sizeof(char) * (len + 1));
+	i = 0;
+	str = malloc(sizeof(char) * (ft_strlen(s)) + 1);
 	if (!str)
 		return (NULL);
-	i = 0;
-	while (i < len && start < len)
+	while (s[i])
 	{
-		str[i] = s[start + i];
+		str[i] = f(i, s[i]);
 		i++;
 	}
 	str[i] = '\0';
