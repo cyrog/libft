@@ -6,7 +6,7 @@
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:29:30 by cgross            #+#    #+#             */
-/*   Updated: 2022/11/01 17:58:54 by cgross           ###   ########.fr       */
+/*   Updated: 2022/11/01 18:09:16 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ char	*ft_itoa(int n)
 	int		len;
 
 	len = mylen(n);
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
 	res = malloc(sizeof(char) * mylen(n) + 1);
 	if (!res)
 		return (NULL);
 	res[len--] = '\0';
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	if (n == 0)
 		res[0] = '0';
 	if (n < 0)
