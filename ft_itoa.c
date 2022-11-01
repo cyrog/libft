@@ -6,47 +6,61 @@
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:29:30 by cgross            #+#    #+#             */
-/*   Updated: 2022/10/31 20:33:06 by cgross           ###   ########.fr       */
+/*   Updated: 2022/11/01 17:58:54 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dst, const char *src)
+int	mylen(int n)
 {
-	size_t	i;
+	int	len;
 
-	i = 0;
-	while (src[i])
+	len = 0;
+	if (n == -2147483648)
 	{
-		dst[i] = src[i];
-		i++;
-		dst[i] = '\0';
+		len = 11;
+		return (len);
 	}
-	return (dst);
+	else if (n < 0)
+	{
+		len++;
+		n = -n;
+	}
+	else if (n == 0)
+		len = 1;
+	while (n > 0)
+	{
+		len++;
+		n = n / 10;
+	}
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
 	char	*res;
+	int		len;
 
-	res = malloc(sizeof(char) * 2);
+	len = mylen(n);
+	res = malloc(sizeof(char) * mylen(n) + 1);
 	if (!res)
 		return (NULL);
+	res[len--] = '\0';
 	if (n == -2147483648)
-		return (ft_strcpy(res, "-2147483648"));
+		return (ft_strdup("-2147483648"));
+	if (n == 0)
+		res[0] = '0';
 	if (n < 0)
 	{
 		res[0] = '-';
-		res[1] = '\0';
-		res = ft_strjoin(res, ft_itoa(-n));
+		n = -n;
 	}
-	if (n > 9)
-		res = ft_strjoin(ft_itoa(n / 10), ft_itoa(n % 10));
-	else if (n >= 0 && n <= 9)
+	while (n > 0)
 	{
-		res[0] = n + '0';
-		res[1] = '\0';
+		res[len] = (n % 10) + '0';
+		n = n / 10;
+		len--;
 	}
 	return (res);
 }
