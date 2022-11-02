@@ -6,13 +6,13 @@
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 13:06:39 by cgross            #+#    #+#             */
-/*   Updated: 2022/11/01 16:59:32 by cgross           ###   ########.fr       */
+/*   Updated: 2022/11/02 14:18:45 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	get_nb_string(char const *s, char c)
+static int	string_count(char const *s, char c)
 {
 	int	i;
 	int	nb;
@@ -43,12 +43,14 @@ static char	*word(char const *s, char c, int start)
 	j = start;
 	len = 0;
 	i = 0;
-	while (s[start] != c && s[j])
+	while (s[start] != c)
 	{
 		start++;
 		len++;
 	}
 	word = malloc(sizeof(char) * len + 1);
+	if (!word)
+		return (NULL);
 	while (s[j] != c && s[j])
 		word[i++] = s[j++];
 	word[i] = '\0';
@@ -57,24 +59,24 @@ static char	*word(char const *s, char c, int start)
 
 char	**ft_split(char const *s, char c)
 {
-	char	**tab;
+	char	**split;
+	int		tab;
 	int		i;
-	int		j;
 
-	tab = malloc(sizeof(char *) * (get_nb_string(s, c) + 1));
-	if (!tab || !s)
+	split = malloc(sizeof(char *) * (string_count(s, c) + 1));
+	if (!split || !s)
 		return (0);
+	tab = 0;
 	i = 0;
-	j = 0;
-	while (i < get_nb_string(s, c))
+	while (tab < string_count(s, c))
 	{
-		while (s[j] == c)
-			j++;
-		tab[i] = word(s, c, j);
-		while (s[j] != c)
-			j++;
-		i++;
+		while (s[i] == c)
+			i++;
+		split[tab] = word(s, c, i);
+		while (s[i] != c)
+			i++;
+		tab++;
 	}
-	tab[i] = 0;
-	return (tab);
+	split[tab] = 0;
+	return (split);
 }

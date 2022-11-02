@@ -6,7 +6,7 @@
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:09:26 by cgross            #+#    #+#             */
-/*   Updated: 2022/10/31 15:52:53 by cgross           ###   ########.fr       */
+/*   Updated: 2022/11/02 13:55:16 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,3 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (NULL);
 }
-
-/*int	main(void)
-{
-	printf("my strnstr:		%s\n", ft_strnstr("botte de foin", "te", 42));
-	printf("my strnstr:		%s\n", strnstr("botte de foin", "te", 42));
-}
-*/

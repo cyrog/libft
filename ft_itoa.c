@@ -6,13 +6,13 @@
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 14:29:30 by cgross            #+#    #+#             */
-/*   Updated: 2022/11/01 18:09:16 by cgross           ###   ########.fr       */
+/*   Updated: 2022/11/02 13:53:31 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	mylen(int n)
+static int	mylen(int n)
 {
 	int	len;
 

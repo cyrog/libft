@@ -6,7 +6,7 @@
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 14:20:17 by cgross            #+#    #+#             */
-/*   Updated: 2022/11/01 18:37:17 by cgross           ###   ########.fr       */
+/*   Updated: 2022/11/02 13:51:13 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		}
 		i++;
 	}
-	str[i] = '\0';
+	str[j] = '\0';
 	return (str);
 }

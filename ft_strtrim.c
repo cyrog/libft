@@ -6,7 +6,7 @@
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 14:56:40 by cgross            #+#    #+#             */
-/*   Updated: 2022/10/26 16:56:44 by cgross           ###   ########.fr       */
+/*   Updated: 2022/11/02 13:54:37 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ caractères.
 
 #include "libft.h"
 
-int	setmatch(char c, char const *set)
+static int	setmatch(char c, char const *set)
 {
 	size_t	i;
 
