@@ -6,77 +6,78 @@
 /*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 13:06:39 by cgross            #+#    #+#             */
-/*   Updated: 2022/11/02 14:18:45 by cgross           ###   ########.fr       */
+/*   Updated: 2023/02/23 16:55:08 by cgross           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	string_count(char const *s, char c)
+tatic int	ft_count(char const *s, char c)
 {
 	int	i;
-	int	nb;
+	int	word;
 
 	i = 0;
-	nb = 0;
-	while (s[i])
+	word = 0;
+	while (s && s[i])
 	{
 		if (s[i] != c)
 		{
-			nb++;
+			word++;
 			while (s[i] != c && s[i])
 				i++;
 		}
 		else
 			i++;
 	}
-	return (nb);
+	return (word);
 }
 
-static char	*word(char const *s, char c, int start)
+static int	ft_size(char const *s, char c, int i)
 {
-	int		i;
-	int		j;
-	int		len;
-	char	*word;
+	int	t;
 
-	j = start;
-	len = 0;
-	i = 0;
-	while (s[start] != c)
+	t = 0;
+	while (s[i] != c && s[i])
 	{
-		start++;
-		len++;
+		t++;
+		i++;
 	}
-	word = malloc(sizeof(char) * len + 1);
-	if (!word)
-		return (NULL);
-	while (s[j] != c && s[j])
-		word[i++] = s[j++];
-	word[i] = '\0';
-	return (word);
+	return (t);
+}
+
+static char	**ft_free(char **final, int j)
+{
+	while (j-- > 0)
+		free(final[j]);
+	free(final);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**split;
-	int		tab;
+	int		j;
+	int		word;
+	char	**final;
+	int		size;
 	int		i;
 
-	split = malloc(sizeof(char *) * (string_count(s, c) + 1));
-	if (!split || !s)
-		return (0);
-	tab = 0;
 	i = 0;
-	while (tab < string_count(s, c))
+	word = ft_count(s, c);
+	final = (char **)malloc(sizeof(char *) * (word + 1));
+	if (!final)
+		return (NULL);
+	j = -1;
+	while (++j < word)
 	{
 		while (s[i] == c)
 			i++;
-		split[tab] = word(s, c, i);
-		while (s[i] != c)
-			i++;
-		tab++;
+		size = ft_size(s, c, i);
+		final[j] = ft_substr(s, i, size);
+		if (!final[j])
+			return (ft_free(final, j));
+		i += size;
 	}
-	split[tab] = 0;
-	return (split);
+	final[j] = 0;
+	return (final);
 }
